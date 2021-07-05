@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		043DBE972692D3C100BD11A4 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043DBE962692D3C100BD11A4 /* SignInView.swift */; };
+		043DBE992692D42F00BD11A4 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043DBE982692D42F00BD11A4 /* SignUpView.swift */; };
+		043DBE9B2692D45100BD11A4 /* SignInPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043DBE9A2692D45100BD11A4 /* SignInPresenter.swift */; };
+		043DBE9D2692D48100BD11A4 /* SignerUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043DBE9C2692D48100BD11A4 /* SignerUseCase.swift */; };
+		043DBE9F2692D67B00BD11A4 /* SignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043DBE9E2692D67B00BD11A4 /* SignUpPresenter.swift */; };
+		043DBEA12692D6F900BD11A4 /* SignInRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043DBEA02692D6F900BD11A4 /* SignInRouter.swift */; };
+		043DBEA32692D9FC00BD11A4 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043DBEA22692D9FC00BD11A4 /* HomePresenter.swift */; };
 		04B2600F268C2DCE009D0CD5 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B2600E268C2DCE009D0CD5 /* Authentication.swift */; };
 		04B26011268C2DE2009D0CD5 /* UserAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B26010268C2DE2009D0CD5 /* UserAuthentication.swift */; };
 		04C825292689A6730027F6C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04C825282689A6730027F6C8 /* AppDelegate.swift */; };
@@ -52,6 +59,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		043DBE962692D3C100BD11A4 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		043DBE982692D42F00BD11A4 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		043DBE9A2692D45100BD11A4 /* SignInPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPresenter.swift; sourceTree = "<group>"; };
+		043DBE9C2692D48100BD11A4 /* SignerUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignerUseCase.swift; sourceTree = "<group>"; };
+		043DBE9E2692D67B00BD11A4 /* SignUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPresenter.swift; sourceTree = "<group>"; };
+		043DBEA02692D6F900BD11A4 /* SignInRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInRouter.swift; sourceTree = "<group>"; };
+		043DBEA22692D9FC00BD11A4 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		04B2600E268C2DCE009D0CD5 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		04B26010268C2DE2009D0CD5 /* UserAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthentication.swift; sourceTree = "<group>"; };
 		04C825252689A6730027F6C8 /* Insta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Insta.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -224,6 +238,7 @@
 		04B26006268C2D9D009D0CD5 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				043DBEA22692D9FC00BD11A4 /* HomePresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -239,6 +254,7 @@
 		04B26008268C2DA7009D0CD5 /* UseCase */ = {
 			isa = PBXGroup;
 			children = (
+				043DBE9C2692D48100BD11A4 /* SignerUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -535,6 +551,7 @@
 		04EDCA26268CA3F800B4C89C /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				043DBE9E2692D67B00BD11A4 /* SignUpPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -542,6 +559,7 @@
 		04EDCA27268CA3FC00B4C89C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				043DBE982692D42F00BD11A4 /* SignUpView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -559,6 +577,7 @@
 		04EDCA29268CA40400B4C89C /* Router */ = {
 			isa = PBXGroup;
 			children = (
+				043DBEA02692D6F900BD11A4 /* SignInRouter.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -566,6 +585,7 @@
 		04EDCA2A268CA40E00B4C89C /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				043DBE9A2692D45100BD11A4 /* SignInPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -573,6 +593,7 @@
 		04EDCA2B268CA41200B4C89C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				043DBE962692D3C100BD11A4 /* SignInView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -846,17 +867,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				043DBEA32692D9FC00BD11A4 /* HomePresenter.swift in Sources */,
 				04EDCA33268CA44100B4C89C /* LocaleDataSource.swift in Sources */,
 				04B26011268C2DE2009D0CD5 /* UserAuthentication.swift in Sources */,
 				04EDCA11268CA2D600B4C89C /* PostModel.swift in Sources */,
 				04EDCA31268CA43400B4C89C /* RemoteDataSource.swift in Sources */,
 				04EDCA0E268CA28500B4C89C /* HomeView.swift in Sources */,
+				043DBE9D2692D48100BD11A4 /* SignerUseCase.swift in Sources */,
+				043DBEA12692D6F900BD11A4 /* SignInRouter.swift in Sources */,
+				043DBE9F2692D67B00BD11A4 /* SignUpPresenter.swift in Sources */,
 				04C825292689A6730027F6C8 /* AppDelegate.swift in Sources */,
 				04C8252B2689A6730027F6C8 /* SceneDelegate.swift in Sources */,
 				04C8252D2689A6730027F6C8 /* ContentView.swift in Sources */,
+				043DBE9B2692D45100BD11A4 /* SignInPresenter.swift in Sources */,
 				04EDCA2D268CA42100B4C89C /* Injection.swift in Sources */,
+				043DBE972692D3C100BD11A4 /* SignInView.swift in Sources */,
 				04EDCA2F268CA42B00B4C89C /* Repository.swift in Sources */,
 				04EDCA35268CA9F800B4C89C /* PostEntity.swift in Sources */,
+				043DBE992692D42F00BD11A4 /* SignUpView.swift in Sources */,
 				04EDCA0C268CA1F800B4C89C /* UserModel.swift in Sources */,
 				04EDCA37268CACA700B4C89C /* Error.swift in Sources */,
 				04B2600F268C2DCE009D0CD5 /* Authentication.swift in Sources */,

@@ -11,7 +11,7 @@ import Combine
 class HomePresenter: ObservableObject {
   
 //  private var router = HomeRouter()
-//  private var useCase: HomeUseCase
+  private var useCase: HomeUseCase
   
 //  @Published var posts: [PostModel] = []
 //  @Published var users: [UserModel] = []
@@ -23,9 +23,9 @@ class HomePresenter: ObservableObject {
   private var cancellables: Set<AnyCancellable> = []
   
   
-//  init(useCase: SearchUseCase) {
-//    self.useCase = useCase
-//  }
+  init(useCase: HomeUseCase) {
+    self.useCase = useCase
+  }
 
 //  func getAllPosts() {
 //    self.isLoading = true

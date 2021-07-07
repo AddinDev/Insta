@@ -21,13 +21,33 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     let auth = Authentication()
     
-    let signInUC = injection.provideSigner()
-    let signInP = SignInPresenter(useCase: signInUC)
+    let signInUseCase = injection.provideSigner()
+    let signInPresenter = SignInPresenter(useCase: signInUseCase)
+    
+    let homeUseCase = injection.provideHome()
+    let homePresenter = HomePresenter(useCase: homeUseCase)
+    
+    let searchUseCase = injection.provideSearch()
+    let searchPresenter = SearchPresenter(useCase: searchUseCase)
+    
+    let uploadUseCase = injection.provideUpload()
+    let uploadPresenter = UploadPresenter(useCase: uploadUseCase)
+    
+    let profileUseCase = injection.provideProfile()
+    let profilePresenter = ProfilePresenter(useCase: profileUseCase)
+    
+//    let settingsUseCase = injection.provideSettings()
+//    let settingsPresenter = SettingsPresenter(useCase: settingsUseCase)
     
     // Create the SwiftUI view that provides the window contents.
     let contentView = ContentView()
       .environmentObject(auth)
-      .environmentObject(signInP)
+      .environmentObject(signInPresenter)
+      .environmentObject(homePresenter)
+      .environmentObject(searchPresenter)
+      .environmentObject(uploadPresenter)
+      .environmentObject(profilePresenter)
+//      .environmentObject(settingsPresenter)
 
     // Use a UIHostingController as window root view controller.
     if let windowScene = scene as? UIWindowScene {

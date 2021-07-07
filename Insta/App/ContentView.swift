@@ -13,6 +13,12 @@ struct ContentView: View {
   
   @EnvironmentObject var signInPresenter: SignInPresenter
   
+  @EnvironmentObject var homePresenter: HomePresenter
+  @EnvironmentObject var searchPresenter: SearchPresenter
+  @EnvironmentObject var uploadPresenter: UploadPresenter
+  @EnvironmentObject var profilePresenter: ProfilePresenter
+  @EnvironmentObject var settingsPresenter: SettingsPresenter
+
   @State private var selected = 0
   
     var body: some View {
@@ -37,9 +43,33 @@ extension ContentView {
   
   var main: some View {
     TabView(selection: $selected) {
-      HomeView()
+      
+      HomeView(presenter: homePresenter)
+        .tabItem {
+          Image(systemName: "house")
+        }
+        .tag(0)
+      
+      SearchView(presenter: searchPresenter)
+        .tabItem {
+          Image(systemName: "magnifyingglass")
+        }
+        .tag(1)
+      
+      UploadView(presenter: uploadPresenter)
+        .tabItem {
+          Image(systemName: "square.and.arrow.up")
+        }
+        .tag(2)
+            
+      ProfileView(presenter: profilePresenter)
+        .tabItem {
+          Image(systemName: "person")
+        }
+        .tag(3)
+      
     }
-    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
+//    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
   }
   
 }

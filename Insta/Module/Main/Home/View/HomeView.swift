@@ -9,6 +9,8 @@ import SwiftUI
 
 struct HomeView: View {
   
+  @ObservedObject var presenter: HomePresenter
+  
   var body: some View {
     content
   }

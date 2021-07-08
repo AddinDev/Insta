@@ -1,15 +1,15 @@
 //
-//  PostModel.swift
+//  PostResponse.swift
 //  Insta
 //
-//  Created by addin on 30/06/21.
+//  Created by addin on 08/07/21.
 //
 
 import Foundation
 
-struct PostModel: Identifiable, Equatable {
+struct PostResponse {
   
-  let id: String
+  let id: String = UUID().uuidString
   let caption: String?
   let imageUrl: String
   let date: String

@@ -9,9 +9,10 @@ import Foundation
 
 struct UserModel: Identifiable, Equatable {
   
-  var id: String = UUID().uuidString
+  var id: String = ""
   var email: String = ""
   var username: String = ""
-  var photoUrl: String?
+  var desc: String? = nil
+  var photoUrl: String? = nil
   
 }

@@ -68,7 +68,7 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
   
   func signIn(email: String, password: String) -> AnyPublisher<Bool, Error> {
     return Future<Bool, Error > { completion in
-      Auth.auth().createUser(withEmail: email, password: password) { result, error in
+      Auth.auth().signIn(withEmail: email, password: password) { result, error in
         if let error = error {
           completion(.failure(error))
           print("error: \(error)")
@@ -127,6 +127,8 @@ extension RemoteDataSource: RemoteDataSourceProtocol {
                           if let error = error {
                             completion(.failure(error))
                             print("error: \(error.localizedDescription)")
+                          } else {
+                            completion(.success(true))
                           }
                         }
                     }

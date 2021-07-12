@@ -9,10 +9,27 @@ import SwiftUI
 
 struct ProfileView: View {
   
+  @EnvironmentObject var auth: Authentication
+
   @ObservedObject var presenter: ProfilePresenter
 
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+      VStack {
+      Text(auth.user.email)
+      Text(auth.user.username)
+        logoutButton
+      }
     }
+  
+}
+
+extension ProfileView {
+  
+  var logoutButton: some View {
+    Button("Logout") {
+      auth.signOut()
+    }
+  }
+  
 }
 

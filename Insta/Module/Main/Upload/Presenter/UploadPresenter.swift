@@ -23,7 +23,7 @@ class UploadPresenter: ObservableObject {
     self.useCase = useCase
   }
   
-  func upload(post: UploadPostModel) {
+  func upload(post: UploadPostModel, action: @escaping () -> Void) {
     self.isLoading = true
     useCase.uploadPost(post: post)
       .receive(on: RunLoop.main)
@@ -35,6 +35,7 @@ class UploadPresenter: ObservableObject {
             self.isLoading = false
           case .finished:
             self.isLoading = false
+            action()
         }
       } receiveValue: { _ in
       }.store(in: &cancellables)

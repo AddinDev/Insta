@@ -9,94 +9,108 @@ import SwiftUI
 
 struct UploadView: View {
   
+  @Environment(\.presentationMode) var presentationMode
+  
   @EnvironmentObject var auth: Authentication
   @ObservedObject var presenter: UploadPresenter
   
   @State var image: UIImage? = nil
-  @State var showCaptureImageView = false
-
-    var body: some View {
-      content
+  @State var showImagePicker = false
+  
+  @State var captionText = ""
+  
+  var body: some View {
+    Group {
+      if presenter.isLoading {
+        loadingIndicator
+      } else if presenter.isError {
+        errorIndicator
+      } else {
+        NavigationView {
+        content
+          .navigationBarTitle("", displayMode: .inline)
+          .navigationBarItems(leading: cancelButton,
+                              trailing: uploadButton
+                                .disabled(image != nil ?  false : true))
+        }
+      }
     }
+    .animation(.linear)
+  }
 }
 
 extension UploadView {
   
+  var loadingIndicator: some View {
+    VStack {
+      Text("Loading...")
+      ProgressView()
+        .progressViewStyle(CircularProgressViewStyle())
+    }
+  }
+  
+  var errorIndicator: some View {
+    Text(presenter.errorMessage)
+      .foregroundColor(.red)
+      .padding()
+  }
+  
   var content: some View {
     ScrollView {
-    VStack {
-      Spacer()
-      Button(action: {
-        self.showCaptureImageView.toggle()
-      }) {
-        Text("Choose photos")
+      VStack {
+        Spacer()
+        
+        if image == nil {
+          Button(action:
+                  {
+                    self.showImagePicker.toggle()
+                  }) {
+            Text("Choose photos")
+          }
+        }
+        
+        if image != nil {
+          Image(uiImage: image!)
+            .resizable()
+            .scaledToFit()
+            .frame(height: 200)
+            .shadow(radius: 10)
+            .onTapGesture {
+              self.showImagePicker.toggle()
+            }
+          
+          TextField("Caption", text: $captionText)
+            .padding()
+          
+        }
+        Spacer()
       }
-      if image != nil {
-        Image(uiImage: image!)
-          .resizable()
-          .scaledToFit()
-          .frame(height: 200)
-          .shadow(radius: 10)
-      
-      
-      Button("upload") {
-        presenter.upload(post: UploadPostModel(caption: "aaa", image: image!, date: Date().getFormattedDate(format: "dd/MM/yyyy HH:mm"), user: UserModel(id: UUID().uuidString, email: auth.user.email, username: auth.user.username, desc: "", photoUrl: "")))
-      }
-      }
-      Spacer()
     }
-    }
-    .sheet(isPresented: $showCaptureImageView, content: {
-      CaptureImageView(isShown: $showCaptureImageView, image: $image, sourceType: .photoLibrary)
+    .sheet(isPresented: $showImagePicker, content: {
+      ImagePicker(isShown: $showImagePicker, image: $image, sourceType: .photoLibrary)
     })
   }
   
-}
-
-struct CaptureImageView {
-  @Binding var isShown: Bool
-  @Binding var image: UIImage?
-  var sourceType: UIImagePickerController.SourceType
-  
-  func makeCoordinator() -> Coordinator {
-    return Coordinator(isShown: $isShown, image: $image)
-  }
-}
-
-extension CaptureImageView: UIViewControllerRepresentable {
-  func makeUIViewController(context: UIViewControllerRepresentableContext<CaptureImageView>) -> UIImagePickerController {
-    let picker = UIImagePickerController()
-    picker.sourceType = sourceType
-    picker.delegate = context.coordinator
-    return picker
+  var cancelButton: some View {
+    Button(action: {
+      self.presentationMode.wrappedValue.dismiss()
+    }) {
+      Text("Cancel")
+        .foregroundColor(.red)
+    }
   }
   
-  func updateUIViewController(_ uiViewController: UIImagePickerController,
-                              context: UIViewControllerRepresentableContext<CaptureImageView>) {
-    
-  }
-}
-
-
-class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-  @Binding var isCoordinatorShown: Bool
-  @Binding var imageInCoordinator: UIImage?
-  
-  init(isShown: Binding<Bool>, image: Binding<UIImage?>) {
-    _isCoordinatorShown = isShown
-    _imageInCoordinator = image
-  }
-  
-  func imagePickerController(_ picker: UIImagePickerController,
-                             didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-    guard let unwrapImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
-    imageInCoordinator = unwrapImage
-    isCoordinatorShown = false
-  }
-  
-  func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-    isCoordinatorShown = false
+  var uploadButton: some View {
+    Button(action: {
+      presenter.upload(post: UploadPostModel(caption: captionText != "" ? captionText : nil, image: image!, date: Date().getFormattedDate(format: "dd/MM/yyyy HH:mm"), user: UserModel(id: UUID().uuidString, email: auth.user.email, username: auth.user.username, photoUrl: auth.user.photoUrl))) {
+        self.presentationMode.wrappedValue.dismiss()
+      }
+    }) {
+      Text("Upload")
+    }
   }
   
 }
+
+
 
